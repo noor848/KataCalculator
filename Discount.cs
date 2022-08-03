@@ -8,44 +8,20 @@ namespace Kata_Calculator
 {
     public static class Discount
     {
-        public static double UniversalDiscountnumber { get; set; }
-
-        public static double UniversalDiscountAmount(double price)
-        {
-            return (UniversalDiscountnumber * price / 100);
-        }
-        public static void ApplyDiscountToAllProduct()
+        public static void ApplyDiscountToAllProduct(double UniversalDiscount)
         {
             foreach (Product product in Stock.Items)
             {
-                product.PriceAfterDiscount = Math.Abs(Discount.UniversalDiscountAmount(product.ProductPrice) - product.PriceAfterTax);
+                product.UniversalDiscountnumber = UniversalDiscount;
+                product.PriceAfterDiscount = Math.Abs(product.UniversalDiscountAmount(product.ProductPrice) - product.PriceAfterTax);
             }
         }
-        public static void ReportBeforeDiscount()
-        {
-            string PriceSymbole = "";
-            Console.ForegroundColor = ConsoleColor.Green;
-
-            foreach (var item in Stock.Items)
-            {
-                Console.WriteLine($"\n Product Name is {item.Name} and UPC {item.UPC} price reported as before tax {item.ProductPrice}{item.currencyOfProductSymbol} and {item.PriceAfterTax.ToString("0.00")}{item.currencyOfProductSymbol} after tax {Tax.TaxRate}%");
-            }
-            Console.ForegroundColor = ConsoleColor.White;
-
-        }
-        public static void ReportAfterDiscount()
+        public static void ApplyDiscountToAllProductAnswerIsNo()
         {
             foreach (Product product in Stock.Items)
-            {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine($"\n Product Name is {product.Name} and UPC {product.UPC}" +
-                    $" price reported as before tax {product.ProductPrice}{product.currencyOfProductSymbol} " +
-                    $"and {product.PriceAfterTax.ToString("0.00")}{product.currencyOfProductSymbol} after tax {Tax.TaxRate}%" +
-                    $"and discount {UniversalDiscountnumber}% and Product Price After discount is {product.PriceAfterDiscount.ToString("0.00") ?? "no discount"}{product.currencyOfProductSymbol}");
-                Console.ForegroundColor = ConsoleColor.White;
-            }
-
+                {
+                product.PriceAfterDiscount = product.ProductPrice;
+                }
         }
-     
     }
 }
