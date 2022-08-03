@@ -10,7 +10,7 @@ namespace Kata_Calculator
     {
         public static void preceding(string upc)
         {
-            Product product = Stock.Items.First();
+            Product product = Product.GetProductWithSpecifiedUPC(upc);
             product.RemainingPrice = product.ProductPrice - product.UPCDiscount(product.ProductPrice);
             product.TaxAmount = ((product.RemainingPrice * Tax.TaxRate)/100);
             double FinalProduct = product.RemainingPrice + product.TaxAmount - product.UniversalDiscountAmount(product.RemainingPrice);
