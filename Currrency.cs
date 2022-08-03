@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Kata_Calculator 
 {
-   
     public class Currency
     {
         public static string CurrencyType(string currencyOfProduct)

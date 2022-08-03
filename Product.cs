@@ -14,10 +14,16 @@ namespace Kata_Calculator
         public double ProductPrice { get; set; }
         public double PriceAfterTax { get; set; }
         public double PriceAfterDiscount { get; set; }
-        public  string currencyOfProductSymbol { get; set; }
-        public  double PriceAfterConfigureDiscount { get; set; }
+        public string currencyOfProductSymbol { get; set; }
+        public double PriceAfterConfigureDiscount { get; set; }
         public double UPCdiscount { get; set; } = 7;
-
+        public double UniversalDiscountnumber { get; set; }
+        public double RemainingPrice { get; set; }
+        public double TaxAmount { get; set; }
+        public double PackagingCost { get; set; }
+        public double TransportCost { get; set; }
+        public double TotalDiscount { get; set; }
+        public double TotalExpenses { get; set; }
         public Product(string name, string upc, double price, string currency)
         {
             Name = name;
@@ -26,13 +32,16 @@ namespace Kata_Calculator
             PriceAfterTax = Tax.TaxCalculation(price)+price;
             currencyOfProductSymbol = currency;
         }
+        public double UniversalDiscountAmount(double price)
+        {
+            return (UniversalDiscountnumber * price / 100);
+        }
         public double UPCDiscount(double price)
         {
             if (Stock.SpecialUPC.Contains(UPC))
             {
                 return (UPCdiscount / 100) * price;
             }
-            Console.ForegroundColor = ConsoleColor.Red;
             return 0;
         }
     }

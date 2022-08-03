@@ -28,8 +28,8 @@ namespace Kata_Calculator
 
                 Console.WriteLine("Enter 4 character of UPC of Product ");
 
-                string ? UPC = Console.ReadLine();
-                if(UPC!.Length<4 || UPC!.Length > 4 || UPC.Length == 0)
+                string? UPC = Console.ReadLine();
+                if (UPC!.Length < 4 || UPC!.Length > 4 || UPC.Length == 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Please check the Length of UPC\n TRY AGAIN!");
@@ -62,9 +62,6 @@ namespace Kata_Calculator
                 Items.Add(new Product(NameOfProduct!, UPC, PriceOfProduct, currencyOfProduct));
                 i++;
             }
-
-
-
         }
    
     }
