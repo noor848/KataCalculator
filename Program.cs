@@ -26,7 +26,6 @@ namespace Kata_Calculator
                 if (Console.ReadLine().ToLower().Equals("yes"))
                 {
                     Console.WriteLine("Enter Discount Amount:");
-          
                     Discount.ApplyDiscountToAllProduct(Convert.ToInt32(Console.ReadLine()));
                     Console.WriteLine("Do You Want A Report?(yes/no)");
                     if (Console.ReadLine().ToLower().Equals("yes"))
@@ -49,9 +48,9 @@ namespace Kata_Calculator
             Console.WriteLine("DO You Want To Know Total Expenses? ");
             if (Console.ReadLine().ToLower().Equals("yes"))
             {
-                Expenses.TotalExpenses(upc);
+                Combining.ChoosingBetweenTwoDiscountMethods(upc);
             }
-   
+
         }
     }
 }
