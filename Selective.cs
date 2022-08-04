@@ -10,7 +10,7 @@ namespace Kata_Calculator
     {
         public static void selective(string upc)
         {
-            Product product = Product.GetProductWithSpecifiedUPC(upc);
+            Product product = Stock.Items.First();
             if (product.UPCDiscount(product.ProductPrice) == 0)
             {
                 Console.Write("\n Not Special UPC\n");

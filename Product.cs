@@ -24,7 +24,6 @@ namespace Kata_Calculator
         public double TransportCost { get; set; }
         public double TotalDiscount { get; set; }
         public double TotalExpenses { get; set; }
-        public double SecondDiscount { get; set; }
         public Product(string name, string upc, double price, string currency)
         {
             Name = name;
@@ -44,11 +43,6 @@ namespace Kata_Calculator
                 return (UPCdiscount / 100) * price;
             }
             return 0;
-        }
-        public static Product GetProductWithSpecifiedUPC(string upc)
-        {
-            Console.ForegroundColor = ConsoleColor.White;
-            return Stock.Items.First();
         }
     }
 }

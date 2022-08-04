@@ -8,11 +8,13 @@ namespace Kata_Calculator
 {
     public  class Expenses
     {
-        public static void CombiningDiscountExpenses(string upc)
+        public static void TotalExpenses(string upc)
         {
-            Product product =Product.GetProductWithSpecifiedUPC(upc);
+            Console.ForegroundColor = ConsoleColor.White;
+            Product product = Stock.Items.First();
+
             Console.WriteLine("Do you Want To Transport?");
-            if (Console.ReadLine()!.ToLower().Equals("yes"))
+            if (Console.ReadLine().ToLower().Equals("yes"))
             {
                 double PercentPackagingCost = .01;
                 product.PackagingCost = PercentPackagingCost * product.ProductPrice;
@@ -21,5 +23,6 @@ namespace Kata_Calculator
             product.TaxAmount = Tax.TaxCalculation(product.ProductPrice);
             Report.ReportTotalExpenses(product);
         }
+
     }
 }

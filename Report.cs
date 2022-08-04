@@ -82,9 +82,7 @@ namespace Kata_Calculator
             Console.WriteLine($"Transport = {TwoDecimalPlaces(product.TransportCost)}");
             product.TotalExpenses = product.ProductPrice + product.TaxAmount - product.TotalDiscount + product.PackagingCost + product.TransportCost;
             Console.WriteLine($"Total Expenses = {TwoDecimalPlaces(product.TotalExpenses)}");
-            Console.WriteLine($"Program separately reports {TwoDecimalPlaces(product.TotalDiscount)}");
         }
-
     }
 }
 

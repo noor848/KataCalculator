@@ -21,7 +21,7 @@ namespace Kata_Calculator
             Console.WriteLine("Enter Number Of Product!");
             NumberOfProduct = Convert.ToInt32(Console.ReadLine());
                 ProductStock.EnterProductDetails(NumberOfProduct);
-            Discount.ReportBeforeDiscount();
+            Report.ReportBeforeDiscount();
 
             Console.WriteLine("Do You Want To Enter Discout To Whole Product ?");
             if (Console.ReadLine().ToLower().Equals("yes"))
@@ -32,7 +32,7 @@ namespace Kata_Calculator
                 Console.WriteLine("Do You Want A Report?(yes/no)");
                 if (Console.ReadLine().ToLower().Equals("yes"))
                 {
-                    Discount.ReportAfterDiscount();
+                    Report.ReportAfterDiscount();
                 }
             }
 
