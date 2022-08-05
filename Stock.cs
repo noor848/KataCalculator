@@ -8,8 +8,8 @@ namespace Kata_Calculator
 {
     public class Stock
     {
-        public  static List<Product> Items;
-        public static List<string> SpecialUPC;
+        public  static List<Product> ?Items;
+        public static List<string>? SpecialUPC;
         public Stock()
         {
             Items = new List<Product>();
@@ -62,7 +62,32 @@ namespace Kata_Calculator
                 Items.Add(new Product(NameOfProduct!, UPC, PriceOfProduct, currencyOfProduct));
                 i++;
             }
+            ChangeEacProductDataToFourDecimalPlaces(Items!);
         }
-   
+        public static void ChangeToFourDecimaPlaces(Product product)
+        {
+            product.TotalDiscount=Report.FourDecimalPlaces(product.TotalDiscount);
+            product.ProductPrice = Report.FourDecimalPlaces(product.ProductPrice);
+            product.PriceAfterTax = Report.FourDecimalPlaces(product.PriceAfterTax);
+            product.PriceAfterDiscount = Report.FourDecimalPlaces(product.PriceAfterDiscount);
+            product.PriceAfterConfigureDiscount = Report.FourDecimalPlaces(product.PriceAfterConfigureDiscount);
+            product.UPCdiscount = Report.FourDecimalPlaces(product.UPCdiscount);
+            product.UniversalDiscountnumber = Report.FourDecimalPlaces(product.UniversalDiscountnumber);
+            product.RemainingPrice = Report.FourDecimalPlaces(product.RemainingPrice);
+            product.TaxAmount = Report.FourDecimalPlaces(product.TaxAmount);
+            product.PackagingCost = Report.FourDecimalPlaces(product.PackagingCost);
+            product.TransportCost = Report.FourDecimalPlaces(product.TransportCost);
+            product.TotalExpenses = Report.FourDecimalPlaces(product.TotalExpenses);
+            product.SecondDiscount = Report.FourDecimalPlaces(product.SecondDiscount);
+        }
+
+
+        public static void ChangeEacProductDataToFourDecimalPlaces(List<Product> ProductList)
+        {
+            foreach (var item in ProductList)
+            {
+                Stock.ChangeToFourDecimaPlaces(item);
+            }
+        }
     }
 }

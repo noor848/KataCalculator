@@ -68,21 +68,48 @@ namespace Kata_Calculator
                 $" Program reports total discount amount {TwoDecimalPlaces(product.TotalDiscount)}\n");
             Console.ForegroundColor = ConsoleColor.White;
         }
-        public static string TwoDecimalPlaces(double text)
+        public static string TwoDecimalPlaces(double value)
         {
-            return text.ToString("0.00");
+            return value.ToString("0.00");
         }
         public static void ReportTotalExpenses(Product product)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"Product Cost = {TwoDecimalPlaces(product.ProductPrice)}");
-            Console.WriteLine($"Tax = {TwoDecimalPlaces(product.TaxAmount)}");
-            Console.WriteLine($"Discounts = {TwoDecimalPlaces(product.TotalDiscount)}");
-            Console.WriteLine($"Packaging = {TwoDecimalPlaces(product.PackagingCost)}");
-            Console.WriteLine($"Transport = {TwoDecimalPlaces(product.TransportCost)}");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine($"Product Cost = {TwoDecimalPlaces(product.ProductPrice)}{product.currencyOfProductSymbol}");
+            Console.WriteLine($"Tax = {TwoDecimalPlaces(product.TaxAmount)}{product.currencyOfProductSymbol}");
+            Console.WriteLine($"Discounts = {TwoDecimalPlaces(product.TotalDiscount)} {product.currencyOfProductSymbol}");
+            Console.WriteLine($"Packaging = {TwoDecimalPlaces(product.PackagingCost)} {product.currencyOfProductSymbol}");
+            Console.WriteLine($"Transport = {TwoDecimalPlaces(product.TransportCost)} {product.currencyOfProductSymbol}");
             product.TotalExpenses = product.ProductPrice + product.TaxAmount - product.TotalDiscount + product.PackagingCost + product.TransportCost;
-            Console.WriteLine($"Total Expenses = {TwoDecimalPlaces(product.TotalExpenses)}");
+            Console.WriteLine($"Total Expenses = {TwoDecimalPlaces(product.TotalExpenses)} {product.currencyOfProductSymbol}");
+            Console.WriteLine($"Program separately reports {TwoDecimalPlaces(product.TotalDiscount)} {product.currencyOfProductSymbol}");
         }
+
+        public static void ReportTotalExpensesAfterCAPDiscount(Product product)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"Product Cost = {TwoDecimalPlaces(product.ProductPrice)} {product.currencyOfProductSymbol}");
+            Console.WriteLine($"Tax = {TwoDecimalPlaces(product.TaxAmount)} {product.currencyOfProductSymbol}");
+            Console.WriteLine($"Discounts = {TwoDecimalPlaces(product.TotalDiscount)}{product.currencyOfProductSymbol}");
+            product.TotalExpenses = product.ProductPrice + product.TaxAmount - product.TotalDiscount ;
+            Console.WriteLine($"Total Expenses = {TwoDecimalPlaces(product.TotalExpenses)}{product.currencyOfProductSymbol}");
+            Console.WriteLine($"Program separately reports {TwoDecimalPlaces(product.TotalDiscount)}{product.currencyOfProductSymbol}");
+        }
+
+        public static void EnterPackigingAndTransport(Product product )
+        {
+            Console.Write("Enter PercentPackagingCost :");
+            double PercentPackagingCost = Convert.ToDouble(Console.ReadLine()) / 100;
+
+            product.PackagingCost = PercentPackagingCost * product.ProductPrice;
+            Console.Write("\nEnter TransportCost :");
+            product.TransportCost = Convert.ToDouble(Console.ReadLine());
+        }
+        public static double FourDecimalPlaces(double value)
+        {
+            return Math.Round(value,4); ;
+        }
+
     }
 }
 
