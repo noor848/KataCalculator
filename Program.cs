@@ -16,8 +16,8 @@ namespace Kata_Calculator
             int NumberOfProduct = 0;
                 Console.WriteLine("Enter Tax Amount");
                 Tax.TaxRate = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine("Enter Number Of Product!");
+              
+            Console.WriteLine("Enter Number Of Product!");
                 NumberOfProduct = Convert.ToInt32(Console.ReadLine());
                 ProductStock.EnterProductDetails(NumberOfProduct);
                 Report.ReportBeforeDiscount();
@@ -39,19 +39,24 @@ namespace Kata_Calculator
                     Discount.ApplyDiscountToAllProductAnswerIsNo();
                     Report.ReportNoDiscount();
                 }
-
                 Console.WriteLine("Do you have A special Code try out !");
                 Console.Write("Enter UPC :");
                 string upc = Console.ReadLine();
                 Selective.selective(upc);
                 Console.WriteLine("Preceding:");
+
                 Precedence.preceding(upc);
-            Console.WriteLine("DO You Want To Know Total Expenses? ");
+
+            Console.WriteLine("Choose Discount Type :");
+            Combining.ChoosingBetweenTwoDiscountMethods(upc);
+
+            Console.WriteLine("Do You Want To Know Total Expenses? ");
             if (Console.ReadLine().ToLower().Equals("yes"))
             {
-                Expenses.TotalExpenses(upc);
+                Product product = Product.GetProductWithSpecifiedUPC(upc);
+                Report.ReportTotalExpenses(product);  
+               
             }
-   
         }
     }
 }
