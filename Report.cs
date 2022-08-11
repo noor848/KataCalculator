@@ -50,10 +50,10 @@ namespace Kata_Calculator
         }
         public static void ReportPrintSelective(Product product)
         {
-            product.PriceAfterConfigureDiscount = product.ProductPrice - product.UniversalDiscountAmount(product.ProductPrice) -
+            product.PriceAfterConfigureDiscount = product.ProductPrice - product.GetUniversalDiscountAmount(product.ProductPrice) -
                   product.UPCDiscount(product.ProductPrice) + Tax.TaxCalculation(product.ProductPrice);
 
-            product.TotalDiscount = product.UniversalDiscountAmount(product.ProductPrice) + product.UPCDiscount(product.ProductPrice);
+            product.TotalDiscount = product.GetUniversalDiscountAmount(product.ProductPrice) + product.UPCDiscount(product.ProductPrice);
             Console.ForegroundColor = ConsoleColor.Yellow;
             if (product.UPCDiscount(product.ProductPrice) == 0)
             {
@@ -74,7 +74,7 @@ namespace Kata_Calculator
         }
         public static void ReportTotalExpenses(Product product)
         {
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine($"Product Cost = {TwoDecimalPlaces(product.ProductPrice)}{product.currencyOfProductSymbol}");
             Console.WriteLine($"Tax = {TwoDecimalPlaces(product.TaxAmount)}{product.currencyOfProductSymbol}");
             Console.WriteLine($"Discounts = {TwoDecimalPlaces(product.TotalDiscount)} {product.currencyOfProductSymbol}");
@@ -83,6 +83,7 @@ namespace Kata_Calculator
             product.TotalExpenses = product.ProductPrice + product.TaxAmount - product.TotalDiscount + product.PackagingCost + product.TransportCost;
             Console.WriteLine($"Total Expenses = {TwoDecimalPlaces(product.TotalExpenses)} {product.currencyOfProductSymbol}");
             Console.WriteLine($"Program separately reports {TwoDecimalPlaces(product.TotalDiscount)} {product.currencyOfProductSymbol}");
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
         public static void ReportTotalExpensesAfterCAPDiscount(Product product)
@@ -98,12 +99,44 @@ namespace Kata_Calculator
 
         public static void EnterPackigingAndTransport(Product product )
         {
-            Console.Write("Enter PercentPackagingCost :");
-            double PercentPackagingCost = Convert.ToDouble(Console.ReadLine()) / 100;
+            double PercentPackagingCost = 0;
+            string PackagingCost = "";
+            while (true)
+            {
+                try {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write("Enter PercentPackagingCost :");
+                     PackagingCost = Console.ReadLine()!;
+                    PercentPackagingCost = Convert.ToDouble(PackagingCost) / 100;
+                    break;
+                }
+                catch (Exception)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Invalid Packaging Cost !");
+                }
+
+            }
 
             product.PackagingCost = PercentPackagingCost * product.ProductPrice;
-            Console.Write("\nEnter TransportCost :");
-            product.TransportCost = Convert.ToDouble(Console.ReadLine());
+
+            while (true)
+            {
+                try
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write("\nEnter TransportCost :");
+                    product.TransportCost = Convert.ToDouble(Console.ReadLine());
+                    break;
+                }
+                catch (Exception)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Invalid Transport Cost !");
+                }
+
+            }
+
         }
         public static double FourDecimalPlaces(double value)
         {

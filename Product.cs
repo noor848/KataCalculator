@@ -34,7 +34,7 @@ namespace Kata_Calculator
             PriceAfterTax = Tax.TaxCalculation(price)+price;
             currencyOfProductSymbol = currency;
         }
-        public double UniversalDiscountAmount(double price)
+        public double GetUniversalDiscountAmount(double price)
         {
             return (UniversalDiscountnumber * price / 100);
         }
@@ -50,7 +50,8 @@ namespace Kata_Calculator
         public static Product GetProductWithSpecifiedUPC(string upc)
         {
             Console.ForegroundColor = ConsoleColor.White;
-            return Stock.Items.First();
+
+            return Stock.Items.Where(s=>s.UPC.Equals(upc)).First();
         }
 
 

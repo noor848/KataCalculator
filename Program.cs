@@ -14,22 +14,63 @@ namespace Kata_Calculator
             Stock ProductStock = new Stock();
         
             int NumberOfProduct = 0;
+            while (true)
+            {
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Enter Tax Amount");
+            try
+            {
                 Tax.TaxRate = Convert.ToDouble(Console.ReadLine());
-              
-            Console.WriteLine("Enter Number Of Product!");
-                NumberOfProduct = Convert.ToInt32(Console.ReadLine());
-                ProductStock.EnterProductDetails(NumberOfProduct);
-                Report.ReportBeforeDiscount();
+                    break;
+                }
+            catch (Exception)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Invalid Tax Value");
+                }
+            }
 
+            while (true)
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("Enter Number Of Product!");
+                try
+                {
+                    NumberOfProduct = Convert.ToInt32(Console.ReadLine());
+                    ProductStock.EnterProductDetails(NumberOfProduct);
+                    break;
+                }
+                catch (Exception)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Invalid Product Number!");
+                }
+            }
+
+                Report.ReportBeforeDiscount();
                 Console.WriteLine("Do You Want To Enter Discout To Whole Product(Yes/No) ?");
                 if (Console.ReadLine().ToLower().Equals("yes"))
+                {     
+                while (true)
                 {
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("Enter Discount Amount:");
-          
-                    Discount.ApplyDiscountToAllProduct(Convert.ToInt32(Console.ReadLine()));
-                    Console.WriteLine("Do You Want A Report?(yes/no)");
-                    if (Console.ReadLine().ToLower().Equals("yes"))
+                    try
+                    {
+                        string DiscountAmount = Console.ReadLine();
+                        Discount.ApplyDiscountToAllProduct(Convert.ToInt32(DiscountAmount));
+                        break;
+                    }
+                    catch (Exception)
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("Invalid Discount Value!");
+                    }
+                }
+
+                Console.WriteLine("Do You Want A Report?(yes/no)");
+
+                    if (Console.ReadLine()!.ToLower().Equals("yes"))
                     {
                         Report.ReportAfterDiscount();
                     }
@@ -39,24 +80,41 @@ namespace Kata_Calculator
                     Discount.ApplyDiscountToAllProductAnswerIsNo();
                     Report.ReportNoDiscount();
                 }
+
                 Console.WriteLine("Do you have A special Code try out !");
-                Console.Write("Enter UPC :");
-                string upc = Console.ReadLine();
-                Selective.selective(upc);
-                Console.WriteLine("Preceding:");
 
-                Precedence.preceding(upc);
-
-            Console.WriteLine("Choose Discount Type :");
-            Combining.ChoosingBetweenTwoDiscountMethods(upc);
-
-            Console.WriteLine("Do You Want To Know Total Expenses? ");
-            if (Console.ReadLine().ToLower().Equals("yes"))
+            string? upc = "";
+            while (true)
             {
-                Product product = Product.GetProductWithSpecifiedUPC(upc);
-                Report.ReportTotalExpenses(product);  
-               
+                Console.ForegroundColor = ConsoleColor.White;
+                try
+                { 
+                    Console.Write("Enter UPC :");
+                    upc = Console.ReadLine();
+                    Selective.selective(upc!);
+                    Console.WriteLine("Preceding:");
+                    Precedence.preceding(upc!);
+                    Console.WriteLine("Choose Discount Type :");
+                    Combining.ChoosingBetweenTwoDiscountMethods(upc!);
+
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("Do You Want To Know Total Expenses? ");
+                    if (Console.ReadLine()!.ToLower().Equals("yes"))
+                    {
+                        Product product = Product.GetProductWithSpecifiedUPC(upc!);
+                        Report.ReportTotalExpenses(product);
+                    }
+                    break;
+                }
+                catch (Exception)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Invalid UPC Code Number!");
+                }
             }
+
+
+          
         }
     }
 }

@@ -9,25 +9,24 @@ namespace Kata_Calculator
     public class Currency
     {
         public static string CurrencyType(string currencyOfProduct)
-        { 
-            if (currencyOfProduct.ToLower().Equals("us"))
+        {
+            if (currencyOfProductToLower(currencyOfProduct).Equals("us"))
             {
                 return "$";
             }
-            else if (currencyOfProduct.ToLower().Equals("shekel"))
+             if (currencyOfProductToLower(currencyOfProduct).Equals("shekel"))
             {
-                Console.WriteLine();
                 return "ILS";
             }
-            else if (currencyOfProduct.ToLower().Equals("jordan"))
+             if (currencyOfProductToLower(currencyOfProduct).Equals("jordan"))
             {
                 return "JOD";
             }
-            else
-            {
-                throw new Exception();
-            }
+                throw new Exception("Enter one of these types(US,Jordan,Shekel)\n TRY AGAIN !");
         }
 
+        public static string currencyOfProductToLower(string currencyOfProduct) {
+            return currencyOfProduct.ToLower();
+        }
     }
 }

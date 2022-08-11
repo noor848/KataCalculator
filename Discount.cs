@@ -13,7 +13,7 @@ namespace Kata_Calculator
             foreach (Product product in Stock.Items)
             {
                 product.UniversalDiscountnumber = UniversalDiscount;
-                product.PriceAfterDiscount = Math.Abs(product.UniversalDiscountAmount(product.ProductPrice) - product.PriceAfterTax);
+                product.PriceAfterDiscount = Math.Abs(product.GetUniversalDiscountAmount(product.ProductPrice) - product.PriceAfterTax);
             }
         }
         public static void ApplyDiscountToAllProductAnswerIsNo()

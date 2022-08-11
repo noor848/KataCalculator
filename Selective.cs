@@ -13,6 +13,7 @@ namespace Kata_Calculator
             Product product = Product.GetProductWithSpecifiedUPC(upc);
             if (product.UPCDiscount(product.ProductPrice) == 0)
             {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.Write("\n Not Special UPC\n");
             }
             Report.ReportPrintSelective(product);

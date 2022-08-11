@@ -13,8 +13,8 @@ namespace Kata_Calculator
             Console.ForegroundColor = ConsoleColor.White;
             Product product = Stock.Items.First();
 
-            Console.WriteLine("Do you Want To Transport?");
-            if (Console.ReadLine().ToLower().Equals("yes"))
+            Console.WriteLine("Do you Want To Transport? (yes/no)");
+            if (Console.ReadLine()!.ToLower().Equals("yes"))
             {
                 double PercentPackagingCost = .01;
                 product.PackagingCost = PercentPackagingCost * product.ProductPrice;
