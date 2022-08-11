@@ -64,6 +64,7 @@ namespace Kata_Calculator
                 string? currencyOfProduct = "";
                 while (true)
                 {
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("Enter Currency of Product (US,Jordan,Shekel)");
                     currencyOfProduct = Console.ReadLine();
                     try
@@ -74,6 +75,7 @@ namespace Kata_Calculator
                     catch (Exception)
                     {
                         Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("Enter one of these types(US,Jordan,Shekel)!");
                     }
                 }
 
